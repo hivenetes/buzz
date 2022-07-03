@@ -1,3 +1,7 @@
 # Misc
 
+*.air.conf
+*.vscode/
 *.history/
+tmp/
+bin/

@@ -10,7 +10,6 @@ import (
 	"os"
 	"strconv"
 	"time"
-
 	"github.com/hivenetes/buzz/app/news"
 	"github.com/joho/godotenv"
 )
@@ -66,7 +65,7 @@ func searchHandler(newsapi *news.Client) http.HandlerFunc {
 			page = "1"
 		}
 
-		results, err := newsapi.FetchEverything(searchQuery, page)
+		results, err := newsapi.FetchHeadlines(searchQuery, page)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -77,11 +76,10 @@ func searchHandler(newsapi *news.Client) http.HandlerFunc {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-
 		search := &Search{
 			Query:      searchQuery,
 			NextPage:   nextPage,
-			TotalPages: int(math.Ceil(float64(results.TotalResults / newsapi.PageSize))),
+			TotalPages: int(math.Ceil(float64(results.TotalResults) / float64(newsapi.PageSize))),
 			Results:    results,
 		}
 
@@ -108,7 +106,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "3000"
+		port = "3001"
 	}
 
 	apiKey := os.Getenv("NEWS_API_KEY")

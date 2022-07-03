@@ -16,7 +16,7 @@
             autofocus
             class="search-input"
             value="{{ .Query }}"
-            placeholder="Enter a news topic"
+            placeholder="what's happening?"
             type="search"
             name="q"
           />
@@ -39,7 +39,7 @@
           </p>
           {{ else if and (ne .Query "") (eq .Results.TotalResults 0) }}
           <p>
-            No results found for your query: <strong>{{ .Query }}</strong
+            No results found for: <strong>{{ .Query }}</strong
             >.
           </p>
           {{ end }}
