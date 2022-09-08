@@ -2,6 +2,8 @@ package main
 
 import (
 	"bytes"
+	"github.com/hivenetes/buzz/app/news"
+	"github.com/joho/godotenv"
 	"html/template"
 	"log"
 	"math"
@@ -10,8 +12,6 @@ import (
 	"os"
 	"strconv"
 	"time"
-	"github.com/hivenetes/buzz/app/news"
-	"github.com/joho/godotenv"
 )
 
 var tpl = template.Must(template.ParseFiles("index.html"))
