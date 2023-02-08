@@ -74,6 +74,7 @@ func searchHandler(newsapi *news.Client) http.HandlerFunc {
 		nextPage, err := strconv.Atoi(page)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
+
 			return
 		}
 		search := &Search{
@@ -85,6 +86,7 @@ func searchHandler(newsapi *news.Client) http.HandlerFunc {
 
 		if ok := !search.IsLastPage(); ok {
 			search.NextPage++
+
 		}
 
 		buf := &bytes.Buffer{}

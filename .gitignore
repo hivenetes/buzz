@@ -1,5 +1,5 @@
 # Misc
-
+.env
 *.air.conf
 *.vscode/
 *.history/
